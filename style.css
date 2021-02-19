@@ -29,6 +29,14 @@ body {
   font-weight: 500;
 }
 
+#episodeDropDownList {
+  height: 2rem;
+  margin-bottom: 5%;
+  color: #181c2b;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 #root {
   width: 100%;
   display: flex;
@@ -104,6 +112,4 @@ footer {
 footer a {
   color: #fe012f;
   font-style: italic;
-}
-
 }

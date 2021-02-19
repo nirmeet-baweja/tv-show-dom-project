@@ -3,6 +3,7 @@ const allEpisodes = getAllEpisodes();
 
 function setup() {
   render(allEpisodes);
+  createDropDown(allEpisodes);
 }
 
 
@@ -18,6 +19,44 @@ function makePageForEpisodes(episodeList) {
 }
 
 
+function createDropDown(episodeList) {
+  const dropDown = document.getElementById("episodeDropDownList");
+
+  // delete the previously created options before proceeding
+  dropDown.innerHTML="";
+
+  let firstOption = document.createElement("option");
+  firstOption.textContent = "All episodes";
+  dropDown.add(firstOption);
+
+  episodeList.forEach(episode => {
+    let dropDownOption = document.createElement("option");
+    dropDownOption.textContent = `S${zeroPad(episode.season, 2)}E${zeroPad(episode.number, 2)} - ${episode.name}`;
+
+    dropDownOption.value = episode.name;
+
+    dropDown.add(dropDownOption);
+  });
+
+  dropDown.addEventListener("change", event => {
+
+    console.log(event.target.value);
+    if(event.target.value === "All episodes") {
+      render(allEpisodes);
+    }
+    else {
+      // let episodeName = event.target.value.slice(event.target.value.indexOf("-") + 2);
+      // console.log(episodeName);
+
+      // let episodeToDisplay = episodeList.filter(episode => episode.name === episodeName);
+
+      let episodeToDisplay = episodeList.filter(episode => episode.name === event.target.value);
+
+      console.log(episodeToDisplay);
+      render(episodeToDisplay);
+    }
+    // console.log(event.target.value.slice(event.target.value.indexOf("-") + 2));
+  });
 }
 
 
