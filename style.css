@@ -1,3 +1,93 @@
+body {
+  background-color: #2b292c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainHeading {
+  width: 60%;
+  margin: auto;
+  padding: 5%;
+  color: #ecaf59;
+  text-align: center;
+}
+
 #root {
-  color: red;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.episodeBlock {
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  padding: 1%;
+  background-color: #181c2b;
+  color: #ecaf59;
+}
+
+.episodeTitle {
+  width: 94%;
+  margin: 0 auto;
+  padding: 1%;
+  align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  min-height: 4rem;
+}
+
+.episodeCode {
+  color: #fe012f;
+}
+
+hr {
+  width: 100%;
+  align-self: flex-start;
+  color: #5a4c38;
+  background-color: #5a4c38;
+  border-color: #5a4c38;
+  margin-bottom: 1rem;
+}
+
+.episodeBlock img {
+  align-self: flex-start;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.summaryTitle {
+  font-size: 1.4rem;
+}
+
+.summaryText {
+  color: #ecaf59;
+  font-size: 1.1rem;
+}
+
+.episodeLink {
+  color: #fe012f;
+  font-style: italic;
+}
+
+.episodeLink:visited {
+  /* color: #742433; */
+  color: #a72336;
+}
+
+footer {
+  color: #ecaf59;
+  text-align: center;
+  font-weight: 500;
+}
+
+footer a {
+  color: #fe012f;
+  font-style: italic;
+}
+
 }
