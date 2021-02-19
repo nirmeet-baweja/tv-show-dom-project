@@ -49,4 +49,38 @@ function createEpisodeBlock(episode) {
 }
 
 
+function liveSearch() {
+  const input = document.querySelector('input');
+  let numOfEpisodes = document.getElementById("numOfEpisodes");
+
+  input.addEventListener('keyup', searchEpisodes);
+
+  function searchEpisodes(event) {
+
+    let searchString = event.target.value.toLowerCase();
+    let searchResult = [];
+
+    if(searchString === "") {
+      searchResult = allEpisodes;
+      numOfEpisodes.innerHTML = "";
+    }
+    else {
+      searchResult = allEpisodes.filter(episode => {
+        return (episode.name.toLowerCase().search(searchString) !== -1) || (episode.summary.toLowerCase().search(searchString) !== -1);
+      });
+      numOfEpisodes.innerHTML =
+        `Displaying : ${searchResult.length} / ${allEpisodes.length} episodes`;
+    }
+
+    console.log("this is the search term : " + searchString);
+    console.log("search result");
+    console.log(searchResult);
+
+    //render the page again with the search results
+    render(searchResult);
+  }
+}
+
+
 window.onload = setup;
+liveSearch();
