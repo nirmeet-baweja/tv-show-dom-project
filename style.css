@@ -5,6 +5,7 @@ body {
   align-items: center;
 }
 
+/* The main title of the page */
 .mainHeading {
   width: 60%;
   margin: auto;
@@ -13,6 +14,7 @@ body {
   text-align: center;
 }
 
+/* The search bar */
 .searchBar {
   width: 40%;
   margin: 1% auto;
@@ -21,6 +23,8 @@ body {
   color: #181c2b;
 }
 
+/* The number of episodes displayed, only visible when a search is made.
+  Else it stays as an empty tag */
 #numOfEpisodes {
   height: 2rem;
   margin-bottom: 1%;
@@ -29,6 +33,7 @@ body {
   font-weight: 500;
 }
 
+/* The dropdown list displaying a list of all the episodes */
 #episodeDropDownList {
   height: 2rem;
   margin-bottom: 5%;
@@ -37,12 +42,14 @@ body {
   font-weight: 500;
 }
 
+/* Root elements containing all the episode tiles */
 #root {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
+/* Represents each episode tile */
 .episodeBlock {
   width: 29%;
   display: flex;
@@ -53,6 +60,7 @@ body {
   color: #ecaf59;
 }
 
+/* Title of the episode */
 .episodeTitle {
   width: 94%;
   margin: 0 auto;
@@ -65,6 +73,7 @@ body {
   min-height: 4rem;
 }
 
+/* Episode code which is written as "SxxExx" beside the episode title */
 .episodeCode {
   color: #fe012f;
 }
@@ -78,6 +87,7 @@ hr {
   margin-bottom: 1rem;
 }
 
+/* The image of the episode */
 .episodeBlock img {
   align-self: flex-start;
   width: 90%;
@@ -88,11 +98,13 @@ hr {
   font-size: 1.4rem;
 }
 
+/* Contains the summary of the episode */
 .summaryText {
   color: #ecaf59;
   font-size: 1.1rem;
 }
 
+/* Contains the link to TVMaze page of that very episode */
 .episodeLink {
   color: #fe012f;
   font-style: italic;
