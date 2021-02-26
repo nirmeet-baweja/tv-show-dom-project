@@ -1,5 +1,5 @@
 // An array of objects Containing the list of all the episodes
-const ALL_EPISODES = getAllEpisodes();
+let allEpisodes;
 const input = document.querySelector(".searchBar");
 
 /*
@@ -110,14 +110,14 @@ function searchEpisodes() {
      If the search string is empty, no search is made.
      Thus, all episodes should be displayed
     */
-    searchResult = ALL_EPISODES;
+    searchResult = allEpisodes;
     numOfEpisodes.innerHTML = "";
   } else {
     /*
      If something is typed in the search bar filter all episodes.
      The search made is case-insensitive.
     */
-    searchResult = ALL_EPISODES.filter((episode) => {
+    searchResult = allEpisodes.filter((episode) => {
       return (
         episode.name.toLowerCase().search(searchString) !== -1 ||
         episode.summary.toLowerCase().search(searchString) !== -1
@@ -126,12 +126,12 @@ function searchEpisodes() {
     /*
       Display a message telling the user number of episodes matching the search
     */
-    numOfEpisodes.innerHTML = `Displaying : ${searchResult.length} / ${ALL_EPISODES.length} episodes`;
+    numOfEpisodes.innerHTML = `Displaying : ${searchResult.length} / ${allEpisodes.length} episodes`;
   }
 
-  console.log("this is the search term : " + searchString);
-  console.log("search result");
-  console.log(searchResult);
+  // console.log("this is the search term : " + searchString);
+  // console.log("search result");
+  // console.log(searchResult);
 
   /*
    Render the webpage with the filtered search results
@@ -146,7 +146,7 @@ function searchEpisodes() {
  * Result - Render the selected episode on the screen i.e. on the DOM
  */
 function episodeDropdownEventListener(event) {
-  console.log(event.target.value);
+  // console.log(event.target.value);
 
   /*
    There are two ways in which the dropdown can render a single episode
@@ -157,7 +157,7 @@ function episodeDropdownEventListener(event) {
    First method -
   */
   // if (event.target.value === "All episodes") {
-  //   render(ALL_EPISODES);
+  //   render(allEpisodes);
   // } else {
   //   let episodeToDisplay = episodeList.filter(
   //     (episode) => episode.name === event.target.value
@@ -232,15 +232,28 @@ function createEpisodeDropdown(episodeList) {
 }
 
 /*
+ * Role - To fetch episodes using the Fetch API
+ * Parameter - None
+ * Returns - An array of episodes (i.e. an array objects).
+ */
+async function fetchAllEpisodes() {
+  let promise = await fetch("https://api.tvmaze.com/shows/82/episodes");
+  let episodes = await promise.json();
+  // console.log(episodes);
+  return episodes;
+}
+
+/*
  * Role - To do the page setup.
  * Parameter - None
  * Result - Completes the page setup and called on window load.
  */
-function setup() {
-  render(ALL_EPISODES);
-  createEpisodeDropdown(ALL_EPISODES);
+async function setup() {
+  allEpisodes = await fetchAllEpisodes();
+  render(allEpisodes);
+  createEpisodeDropdown(allEpisodes);
   input.addEventListener("input", searchEpisodes);
+  fetchAllEpisodes();
 }
 
 window.onload = setup;
-liveSearch();
