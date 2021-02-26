@@ -40,7 +40,7 @@ function createEpisodeBlock(episode) {
   */
   let innerHTML = `<h2 class="episodeTitle">${episode.name}
     <span class="episodeCode">
-    S${zeroPad(episode.season, 2)}E${zeroPad(episode.number, 3)}
+    S${zeroPad(episode.season, 2)} E${zeroPad(episode.number, 2)}
     </span>
     </h2>
     <hr>
