@@ -77,7 +77,7 @@ function createEpisodeBlock(episode) {
  */
 function searchEpisodes() {
   let numOfEpisodes = document.getElementById("numOfEpisodes");
-  let searchString = input.value.toLowerCase();
+  let searchString = episodeSearchBar.value.toLowerCase();
   let searchResult = [];
 
   if (searchString === "") {
@@ -89,13 +89,16 @@ function searchEpisodes() {
     numOfEpisodes.innerHTML = "";
   } else {
     /*
-     If something is typed in the search bar filter all episodes.
-     The search made is case-insensitive.
+     If something is typed in the search bar filter all episodes,
+     based on title and summary.
     */
+
     searchResult = allEpisodes.filter((episode) => {
+      let episodeSummary = episode.summary || "";
       return (
+        // Change everything to lower case to make the search case-insensitive.
         episode.name.toLowerCase().search(searchString) !== -1 ||
-        episode.summary.toLowerCase().search(searchString) !== -1
+        episodeSummary.toLowerCase().search(searchString) !== -1
       );
     });
     /*
@@ -103,10 +106,6 @@ function searchEpisodes() {
     */
     numOfEpisodes.innerHTML = `Displaying : ${searchResult.length} / ${allEpisodes.length} episodes`;
   }
-
-  // console.log("this is the search term : " + searchString);
-  // console.log("search result");
-  // console.log(searchResult);
 
   /*
    Render the webpage with the filtered search results
@@ -154,9 +153,9 @@ function episodeDropdownEventListener(event) {
    And it does not occur in the episode summary.
   */
   // if (event.target.value === "All episodes") {
-  //   input.value = "";
+  //   episodeSearchBar.value = "";
   // } else {
-  //   input.value = event.target.value;
+  //   episodeSearchBar.value = event.target.value;
   // }
   // searchEpisodes();
 }

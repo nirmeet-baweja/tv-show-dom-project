@@ -1,9 +1,22 @@
-// An array of objects Containing the list of all the episodes
-let allShows; // = getAllShows();
-let allEpisodes;
-const input = document.querySelector(".searchBar");
+/*****************************************************************************/
+
+/*
+ * Declaring the Global Variables
+ */
+
+// Flags used in the render function, to chose what is being rendered on screen
 const SHOW = "show";
 const EPISODE = "episode";
+
+// An array containing the list of all the shows
+let allShows;
+// An array of objects containing the list of all the episodes
+// of the selected show
+let allEpisodes;
+// get the root element from the DOM that should contain the episodes / shows
+const rootElem = document.getElementById("root");
+// DOM element for the episode search bar
+const episodeSearchBar = document.querySelector(".searchBar");
 
 /*****************************************************************************/
 
@@ -15,9 +28,6 @@ const EPISODE = "episode";
  * Result - Displays the episodes / shows on the page using DOM manipulation.
  */
 function render(list, type) {
-  // get the root element that should contain the episodes, from the DOM
-  const rootElem = document.getElementById("root");
-
   /*
    clear the root element before displaying the episode list
    this step is important to clear any previously displayed episodes
@@ -76,7 +86,8 @@ async function setup() {
   // create the episode dropdown
   createEpisodeDropdown(allEpisodes);
   // add the event listener to the search field
-  input.addEventListener("input", searchEpisodes);
+  console.log(episodeSearchBar);
+  episodeSearchBar.addEventListener("keyup", searchEpisodes);
 }
 
 /*****************************************************************************/
