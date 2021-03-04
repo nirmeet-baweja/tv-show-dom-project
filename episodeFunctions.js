@@ -221,6 +221,5 @@ function createEpisodeDropdown(episodeList) {
 async function fetchAllEpisodes(showID) {
   let promise = await fetch(`https://api.tvmaze.com/shows/${showID}/episodes`);
   let episodes = await promise.json();
-  // console.log(episodes);
   return episodes;
 }

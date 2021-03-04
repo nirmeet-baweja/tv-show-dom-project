@@ -13,7 +13,7 @@ let allShows;
 // An array of objects containing the list of all the episodes
 // of the selected show
 let allEpisodes;
-// get the root element from the DOM that should contain the episodes / shows
+// DOM element called root that contains the episodes / shows
 const rootElem = document.getElementById("root");
 // DOM element for the episode search bar
 const episodeSearchBar = document.querySelector(".searchBar");
@@ -59,7 +59,7 @@ function render(list, type) {
  * Parameter - None
  * Result - Completes the page setup and called on window load.
  */
-async function setup() {
+function setup() {
   // get all shows from show.js file
   allShows = getAllShows();
 
@@ -86,7 +86,6 @@ async function setup() {
   // create the episode dropdown
   createEpisodeDropdown(allEpisodes);
   // add the event listener to the search field
-  console.log(episodeSearchBar);
   episodeSearchBar.addEventListener("keyup", searchEpisodes);
 }
 
