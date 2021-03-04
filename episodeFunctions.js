@@ -36,11 +36,17 @@ function createEpisodeBlock(episode) {
   /*
    populate the innerHTML variable with the episode title, image and summary
   */
-  let imgSrc;
+  let imgSrc, episodeSummary;
   if (episode.image === null) {
     imgSrc = "resources/old-tv-static.jpg";
   } else {
     imgSrc = episode.image.medium;
+  }
+
+  if (episode.summary === null) {
+    episodeSummary = "Check again later for latest updates!";
+  } else {
+    episodeSummary = episode.summary;
   }
 
   let innerHTML = `<h2 class="episodeTitle">${episode.name}
@@ -51,7 +57,7 @@ function createEpisodeBlock(episode) {
     <hr>
     <img src="${imgSrc}">
     <h3 class="summaryTitle">Summary:</h3>
-    <div class="summaryText">${episode.summary}</div>
+    <div class="summaryText">${episodeSummary}</div>
     <a class="episodeLink" href=${episode.url} target="_blank">More...</a>`;
 
   episodeBlock.innerHTML = innerHTML;
