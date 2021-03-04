@@ -1,4 +1,15 @@
 /*
+ * Role - Event listener for "All Shows" button
+ * Parameter - event
+ * Returns - Nothing
+ * Result - Render all the shows on the screen
+ */
+function allShowsEventListener(event) {
+  event.preventDefault();
+  render(allShows, SHOW);
+}
+
+/*
  * Role - To create an HTML block for a single show
  * Parameter - A single show passed as a parameter
  * Returns - An HTML div element that contains the show data,
