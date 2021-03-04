@@ -31,7 +31,7 @@ function createShowBlock(show) {
   showBlock.className = "showBlock";
 
   /*
-   populate the innerHTML variable with the episode title, image and summary
+   Populate the innerHTML variable with the episode title, image and summary
   */
   let imgSrc;
   if (show.image === null) {
@@ -40,12 +40,23 @@ function createShowBlock(show) {
     imgSrc = show.image.medium;
   }
 
+  console.log(show.rating.average);
   let innerHTML = `<h2 class="showTitle">${show.name}</h2>
     <hr>
     <img src="${imgSrc}">
-    <h3 class="summaryTitle">Summary:</h3>
-    <div class="summaryText">${show.summary}</div>
-    <a class="showLink" href=${show.url} target="_blank">More...</a>`;
+    <div class="summary">
+      <h3 class="summaryTitle">Summary:</h3>
+      <div class="summaryText">${show.summary}</div>
+      <a class="showLink" href=${show.url} target="_blank">More...</a>
+    </div>
+    <div class="info">
+      <ul>
+      <li>Rating : ${show.rating.average}</li>
+      <li>Genre : ${show.genres.join(", ")}</li>
+      <li>Status : ${show.status}</li>
+      <li>Runtime : ${show.runtime}</li>
+      </ul>
+    </div>`;
 
   showBlock.innerHTML = innerHTML;
   return showBlock;
