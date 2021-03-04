@@ -9,6 +9,8 @@ function allShowsEventListener(event) {
   render(allShows, SHOW);
 }
 
+/*****************************************************************************/
+
 /*
  * Role - To create an HTML block for a single show
  * Parameter - A single show passed as a parameter
@@ -47,6 +49,65 @@ function createShowBlock(show) {
 
   showBlock.innerHTML = innerHTML;
   return showBlock;
+}
+
+/*****************************************************************************/
+
+/*
+ * Role - Filter the episodes based on the characters typed in the search bar
+    and render the page for the filtered episodes
+ * Parameter - None
+ * Returns - Nothing
+ * Result - The characters typed in the search bar are matched with the
+ *  episode title and episode summary. All the episodes with a positive match
+ *  are displayed on the webpage.
+ */
+function searchShows() {
+  let numOfEpisodes = document.getElementById("numOfEpisodes");
+  let searchString = searchBar.value.toLowerCase();
+  let searchResult = [];
+
+  if (searchString === "") {
+    /*
+     If the search string is empty, no search is made.
+     Thus, all episodes should be displayed
+    */
+    searchResult = allShows;
+    numOfEpisodes.innerHTML = "";
+  } else {
+    /*
+     If something is typed in the search bar filter all shows,
+     based on title, summary and genres.
+    */
+
+    searchResult = allShows.filter((show) => {
+      // if show summary is null, use empty string instead
+      let showSummary = show.summary || "";
+
+      // check if the search term is found in the show.genres array
+      let isFoundInGenre = show.genres.some((genre) => {
+        return genre.toLowerCase().includes(searchString);
+      });
+
+      return (
+        // Change everything to lower case to make the search case-insensitive.
+        show.name.toLowerCase().search(searchString) !== -1 ||
+        showSummary.toLowerCase().search(searchString) !== -1 ||
+        isFoundInGenre
+      );
+    });
+
+    /*
+      Display a message telling the user number of shows matching the search
+    */
+    numOfEpisodes.innerHTML = `Displaying : ${searchResult.length} / ${allShows.length} shows`;
+  }
+
+  /*
+   Render the webpage with the filtered search results
+  */
+  console.log(searchResult);
+  render(searchResult, SHOW);
 }
 
 /*****************************************************************************/

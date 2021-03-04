@@ -7,6 +7,7 @@
 // Flags used in the render function, to chose what is being rendered on screen
 const SHOW = "show";
 const EPISODE = "episode";
+let showingOnScreen;
 
 // An array containing the list of all the shows
 let allShows;
@@ -16,7 +17,7 @@ let allEpisodes;
 // DOM element called root that contains the episodes / shows
 const rootElem = document.getElementById("root");
 // DOM element for the episode search bar
-const episodeSearchBar = document.querySelector(".searchBar");
+const searchBar = document.querySelector(".searchBar");
 // All Shows button
 const allShowsBtn = document.getElementById("allShowsBtn");
 
@@ -42,8 +43,10 @@ function render(list, type) {
      create the HTML episode tile for each episode in the list
     */
     if (type === SHOW) {
+      showingOnScreen = SHOW;
       htmlBlock = createShowBlock(element);
     } else if (type === EPISODE) {
+      showingOnScreen = EPISODE;
       htmlBlock = createEpisodeBlock(element);
     }
 
@@ -90,7 +93,13 @@ function setup() {
   // create the episode dropdown
   createEpisodeDropdown(allEpisodes);
   // add the event listener to the search field
-  episodeSearchBar.addEventListener("keyup", searchEpisodes);
+  searchBar.addEventListener("keyup", (event) => {
+    if (showingOnScreen === EPISODE) {
+      searchEpisodes();
+    } else if (showingOnScreen === SHOW) {
+      searchShows();
+    }
+  });
 }
 
 /*****************************************************************************/

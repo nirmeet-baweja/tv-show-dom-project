@@ -77,7 +77,7 @@ function createEpisodeBlock(episode) {
  */
 function searchEpisodes() {
   let numOfEpisodes = document.getElementById("numOfEpisodes");
-  let searchString = episodeSearchBar.value.toLowerCase();
+  let searchString = searchBar.value.toLowerCase();
   let searchResult = [];
 
   if (searchString === "") {
@@ -153,9 +153,9 @@ function episodeDropdownEventListener(event) {
    And it does not occur in the episode summary.
   */
   // if (event.target.value === "All episodes") {
-  //   episodeSearchBar.value = "";
+  //   searchBar.value = "";
   // } else {
-  //   episodeSearchBar.value = event.target.value;
+  //   searchBar.value = event.target.value;
   // }
   // searchEpisodes();
 }
