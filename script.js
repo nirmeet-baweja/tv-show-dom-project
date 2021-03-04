@@ -17,6 +17,8 @@ let allEpisodes;
 const rootElem = document.getElementById("root");
 // DOM element for the episode search bar
 const episodeSearchBar = document.querySelector(".searchBar");
+// All Shows button
+const allShowsBtn = document.getElementById("allShowsBtn");
 
 /*****************************************************************************/
 
@@ -77,6 +79,8 @@ async function setup() {
     return 0;
   });
 
+  // add the event listener to the all shows button
+  allShowsBtn.addEventListener("click", allShowsEventListener);
   // initialise allEpisodes to empty array, as no show is selected yet.
   allEpisodes = [];
   // render the page
