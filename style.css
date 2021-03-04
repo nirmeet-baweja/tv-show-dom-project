@@ -33,13 +33,29 @@ body {
   font-weight: 500;
 }
 
+form {
+  display: flex;
+  width: 90%;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* margin: 1rem;
+  padding: 1rem; */
+}
+
 /* The dropdown list displaying a list of all the episodes */
-#episodeDropDownList {
+#episodeDropDownList,
+#showDropDownList {
+  /* width: 35%; */
+  margin: 0 2rem;
   height: 2rem;
   margin-bottom: 5%;
   color: #181c2b;
   font-size: 1.2rem;
   font-weight: 500;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
 }
 
 /* Root elements containing all the episode tiles */
@@ -60,8 +76,19 @@ body {
   color: #ecaf59;
 }
 
+.showBlock {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  margin: 1.5%;
+  padding: 1%;
+  background-color: #181c2b;
+  color: #ecaf59;
+}
+
 /* Title of the episode */
-.episodeTitle {
+.episodeTitle,
+.showTitle {
   width: 94%;
   margin: 0 auto;
   padding: 1%;
@@ -88,7 +115,8 @@ hr {
 }
 
 /* The image of the episode */
-.episodeBlock img {
+.episodeBlock img,
+.showBlock img {
   align-self: flex-start;
   width: 90%;
   margin: 0 auto;
@@ -105,7 +133,8 @@ hr {
 }
 
 /* Contains the link to TVMaze page of that very episode */
-.episodeLink {
+.episodeLink,
+.showLink {
   color: #fe012f;
   font-style: italic;
 }
