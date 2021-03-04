@@ -33,14 +33,29 @@ body {
   font-weight: 500;
 }
 
+form {
+  display: flex;
+  width: 90%;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* margin: 1rem;
+  padding: 1rem; */
+}
+
 /* The dropdown list displaying a list of all the episodes */
 #episodeDropDownList,
 #showDropDownList {
+  /* width: 35%; */
+  margin: 0 2rem;
   height: 2rem;
   margin-bottom: 5%;
   color: #181c2b;
   font-size: 1.2rem;
   font-weight: 500;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
 }
 
 /* Root elements containing all the episode tiles */
