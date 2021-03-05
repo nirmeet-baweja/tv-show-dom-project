@@ -35,6 +35,8 @@ const showDropdown = document.getElementById("showDropDownList");
  * Result - Displays the episodes / shows on the page using DOM manipulation.
  */
 function render(list, type) {
+  // scroll to top of the page before rendering the page
+  window.scroll(0, 0);
   /*
    clear the root element before displaying the episode list
    this step is important to clear any previously displayed episodes
@@ -58,6 +60,11 @@ function render(list, type) {
      then append each episode / show to the root element (i.e. to the DOM)
     */
     rootElem.appendChild(htmlBlock);
+
+    // if displaying shows on the screen then add event listener to show titles
+    if (type === SHOW) {
+      createShowTitleEventListener();
+    }
   });
 }
 

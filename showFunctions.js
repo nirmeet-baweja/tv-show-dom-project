@@ -7,6 +7,28 @@
 function allShowsEventListener(event) {
   event.preventDefault();
   render(allShows, SHOW);
+  showDropdown.selectedIndex = 0;
+  episodeDropdown.selectedIndex = 0;
+  allEpisodes = [];
+  createEpisodeDropdown(allEpisodes);
+}
+
+/*****************************************************************************/
+
+/*
+ * Role -
+ * Parameter -
+ * Returns -
+ * Result -
+ */
+function createShowTitleEventListener() {
+  let showTitles = document.querySelectorAll(".showTitle");
+  showTitles.forEach((showTitle) => {
+    showTitle.addEventListener("click", () => {
+      showDropdown.value = showTitle.id;
+      showDropdownEventListener(showTitle.id);
+    });
+  });
 }
 
 /*****************************************************************************/
@@ -22,8 +44,6 @@ function allShowsEventListener(event) {
 function createShowBlock(show) {
   // create the div element that will contain all the episode info
   let showBlock = document.createElement("div");
-  // console.log("create show block");
-  // console.log(show);
   /*
    assign the episodeBlock a class "episodeBlock",
    this class is then used to apply CSS styling
@@ -41,7 +61,7 @@ function createShowBlock(show) {
     imgSrc = show.image.medium;
   }
 
-  let innerHTML = `<h2 class="showTitle">${show.name}</h2>
+  let innerHTML = `<h2 class="showTitle" id="${show.id}">${show.name}</h2>
     <hr>
     <img src="${imgSrc}">
     <div class="summary">
@@ -117,7 +137,6 @@ function searchShows() {
   /*
    Render the webpage with the filtered search results
   */
-  console.log(searchResult);
   render(searchResult, SHOW);
 }
 
@@ -130,17 +149,15 @@ function searchShows() {
  * Result - Render all the episodes of the selected show
  * on the screen i.e. on the DOM
  */
-async function showDropdownEventListener(event) {
-  // console.log(event.target.value);
+async function showDropdownEventListener(showID) {
   /*
    First method -
   */
-  console.log(event.target.value);
-  if (event.target.value === "All shows") {
+  if (showID === "All shows") {
     render(allShows, SHOW);
     allEpisodes = [];
   } else {
-    let episodesToDisplay = await fetchAllEpisodes(event.target.value);
+    let episodesToDisplay = await fetchAllEpisodes(showID);
     allEpisodes = await episodesToDisplay;
     render(allEpisodes, EPISODE);
   }
@@ -156,7 +173,6 @@ async function showDropdownEventListener(event) {
  * Result -
  */
 function createShowDropdown(showList) {
-
   /*
    delete the previously created options before proceeding
   */
@@ -189,5 +205,7 @@ function createShowDropdown(showList) {
   /*
    add the eventListener to <select> i.e. the episode dropdown
   */
-  showDropdown.addEventListener("change", showDropdownEventListener);
+  showDropdown.addEventListener("change", () => {
+    showDropdownEventListener(showDropdown.value);
+  });
 }
