@@ -122,8 +122,6 @@ function searchEpisodes() {
  * Result - Render the selected episode on the screen i.e. on the DOM
  */
 function episodeDropdownEventListener(event) {
-  // console.log(event.target.value);
-
   /*
    There are two ways in which the dropdown can render a single episode
    on the screen. Only one of the two methods should be uncommented at a time.
@@ -139,7 +137,6 @@ function episodeDropdownEventListener(event) {
     let episodeToDisplay = allEpisodes.filter(
       (episode) => episode.name === event.target.value
     );
-    console.log(episodeToDisplay);
     render(episodeToDisplay, EPISODE);
   }
 
@@ -170,7 +167,6 @@ function episodeDropdownEventListener(event) {
  *  display the chosen episode from the dropdown.
  */
 function createEpisodeDropdown(episodeList) {
-  const episodeDropdown = document.getElementById("episodeDropDownList");
 
   /*
    delete the previously created options before proceeding

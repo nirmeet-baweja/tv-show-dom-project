@@ -7,6 +7,28 @@
 function allShowsEventListener(event) {
   event.preventDefault();
   render(allShows, SHOW);
+  showDropdown.selectedIndex = 0;
+  episodeDropdown.selectedIndex = 0;
+  allEpisodes = [];
+  createEpisodeDropdown(allEpisodes);
+}
+
+/*****************************************************************************/
+
+/*
+ * Role -
+ * Parameter -
+ * Returns -
+ * Result -
+ */
+function createShowTitleEventListener() {
+  let showTitles = document.querySelectorAll(".showTitle");
+  showTitles.forEach((showTitle) => {
+    showTitle.addEventListener("click", () => {
+      showDropdown.value = showTitle.id;
+      showDropdownEventListener(showTitle.id);
+    });
+  });
 }
 
 /*****************************************************************************/
@@ -22,8 +44,6 @@ function allShowsEventListener(event) {
 function createShowBlock(show) {
   // create the div element that will contain all the episode info
   let showBlock = document.createElement("div");
-  // console.log("create show block");
-  // console.log(show);
   /*
    assign the episodeBlock a class "episodeBlock",
    this class is then used to apply CSS styling
@@ -31,7 +51,8 @@ function createShowBlock(show) {
   showBlock.className = "showBlock";
 
   /*
-   populate the innerHTML variable with the episode title, image and summary
+   Populate the innerHTML variable with the show title, image, summary
+   and other information
   */
   let imgSrc;
   if (show.image === null) {
@@ -40,12 +61,22 @@ function createShowBlock(show) {
     imgSrc = show.image.medium;
   }
 
-  let innerHTML = `<h2 class="showTitle">${show.name}</h2>
+  let innerHTML = `<h2 class="showTitle" id="${show.id}">${show.name}</h2>
     <hr>
     <img src="${imgSrc}">
-    <h3 class="summaryTitle">Summary:</h3>
-    <div class="summaryText">${show.summary}</div>
-    <a class="showLink" href=${show.url} target="_blank">More...</a>`;
+    <div class="summary">
+      <h3 class="summaryTitle">Summary:</h3>
+      <div class="summaryText">${show.summary}</div>
+      <a class="showLink" href=${show.url} target="_blank">More...</a>
+    </div>
+    <div class="info">
+      <ul class="infoList">
+      <li>Rating : ${show.rating.average}</li>
+      <li>Genre : ${show.genres.join(", ")}</li>
+      <li>Status : ${show.status}</li>
+      <li>Runtime : ${show.runtime}</li>
+      </ul>
+    </div>`;
 
   showBlock.innerHTML = innerHTML;
   return showBlock;
@@ -106,7 +137,6 @@ function searchShows() {
   /*
    Render the webpage with the filtered search results
   */
-  console.log(searchResult);
   render(searchResult, SHOW);
 }
 
@@ -119,17 +149,15 @@ function searchShows() {
  * Result - Render all the episodes of the selected show
  * on the screen i.e. on the DOM
  */
-async function showDropdownEventListener(event) {
-  // console.log(event.target.value);
+async function showDropdownEventListener(showID) {
   /*
    First method -
   */
-  console.log(event.target.value);
-  if (event.target.value === "All shows") {
+  if (showID === "All shows") {
     render(allShows, SHOW);
     allEpisodes = [];
   } else {
-    let episodesToDisplay = await fetchAllEpisodes(event.target.value);
+    let episodesToDisplay = await fetchAllEpisodes(showID);
     allEpisodes = await episodesToDisplay;
     render(allEpisodes, EPISODE);
   }
@@ -145,8 +173,6 @@ async function showDropdownEventListener(event) {
  * Result -
  */
 function createShowDropdown(showList) {
-  const showDropdown = document.getElementById("showDropDownList");
-
   /*
    delete the previously created options before proceeding
   */
@@ -179,5 +205,7 @@ function createShowDropdown(showList) {
   /*
    add the eventListener to <select> i.e. the episode dropdown
   */
-  showDropdown.addEventListener("change", showDropdownEventListener);
+  showDropdown.addEventListener("change", () => {
+    showDropdownEventListener(showDropdown.value);
+  });
 }
