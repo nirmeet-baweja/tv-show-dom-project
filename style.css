@@ -1,5 +1,6 @@
 body {
   background-color: #2b292c;
+  /* background-color: #535458; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +15,7 @@ nav {
   align-items: center;
   background-color: #ecaf59;
   background-color: #181c2b;
+  background-color: #240c44;
   position: fixed;
   /* border: 1px solid yellow; */
 }
@@ -64,6 +66,7 @@ nav {
   margin: auto;
   padding: 5%;
   color: #ecaf59;
+  /* color: #e0dfe4; */
   text-align: center;
 }
 
@@ -94,9 +97,10 @@ form {
 
 /* Root elements containing all the episode tiles */
 #root {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
+  /* border: 1px solid red; */
 }
 
 /* Represents each episode tile */
@@ -117,11 +121,13 @@ form {
   /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: center;
+  /* align-self: center; */
+  /* align-items: center; */
   margin: 1.5%;
   padding: 1%;
   background-color: #181c2b;
   color: #ecaf59;
+  /* border: 1px solid yellowgreen; */
 }
 
 /* Title of the episode */
@@ -136,7 +142,13 @@ form {
   align-items: center;
   text-align: center;
   min-height: 4rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.showTitle {
+  font-size: 3rem;
+  font-family: "Merienda One", Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
 /* Episode code which is written as "SxxExx" beside the episode title */
@@ -162,10 +174,12 @@ hr {
 
 .showBlock img {
   width: 20%;
+  /* border: 1px solid red; */
 }
 
 .showBlock .summary {
   width: 40%;
+  /* border: 1px solid red; */
 }
 
 .summaryTitle {
@@ -180,6 +194,23 @@ hr {
 
 .info {
   width: 30%;
+  /* background-color: #34043c;
+  background-color: #4c043c;
+  background-color: #443c64; */
+  background-color: #240c44;
+  /* border: 1px solid red; */
+}
+
+.infoList {
+  list-style-type: none; /* Remove bullets */
+  margin: 0;
+  padding: 0;
+}
+
+.infoList li {
+  margin: 2rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
 }
 
 /* Contains the link to TVMaze page of that very episode */

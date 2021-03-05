@@ -20,6 +20,10 @@ const rootElem = document.getElementById("root");
 const searchBar = document.querySelector(".searchBar");
 // All Shows button
 const allShowsBtn = document.getElementById("allShowsBtn");
+// Episodes dropdown menu
+const episodeDropdown = document.getElementById("episodeDropDownList");
+// Shows dropdown menu
+const showDropdown = document.getElementById("showDropDownList");
 
 /*****************************************************************************/
 
@@ -51,7 +55,7 @@ function render(list, type) {
     }
 
     /*
-     then append each episode to the root element (i.e. to the DOM)
+     then append each episode / show to the root element (i.e. to the DOM)
     */
     rootElem.appendChild(htmlBlock);
   });

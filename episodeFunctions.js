@@ -170,7 +170,6 @@ function episodeDropdownEventListener(event) {
  *  display the chosen episode from the dropdown.
  */
 function createEpisodeDropdown(episodeList) {
-  const episodeDropdown = document.getElementById("episodeDropDownList");
 
   /*
    delete the previously created options before proceeding

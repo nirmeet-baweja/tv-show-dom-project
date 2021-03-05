@@ -31,7 +31,8 @@ function createShowBlock(show) {
   showBlock.className = "showBlock";
 
   /*
-   Populate the innerHTML variable with the episode title, image and summary
+   Populate the innerHTML variable with the show title, image, summary
+   and other information
   */
   let imgSrc;
   if (show.image === null) {
@@ -40,7 +41,6 @@ function createShowBlock(show) {
     imgSrc = show.image.medium;
   }
 
-  console.log(show.rating.average);
   let innerHTML = `<h2 class="showTitle">${show.name}</h2>
     <hr>
     <img src="${imgSrc}">
@@ -50,7 +50,7 @@ function createShowBlock(show) {
       <a class="showLink" href=${show.url} target="_blank">More...</a>
     </div>
     <div class="info">
-      <ul>
+      <ul class="infoList">
       <li>Rating : ${show.rating.average}</li>
       <li>Genre : ${show.genres.join(", ")}</li>
       <li>Status : ${show.status}</li>
@@ -156,7 +156,6 @@ async function showDropdownEventListener(event) {
  * Result -
  */
 function createShowDropdown(showList) {
-  const showDropdown = document.getElementById("showDropDownList");
 
   /*
    delete the previously created options before proceeding
