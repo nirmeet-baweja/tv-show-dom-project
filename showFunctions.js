@@ -4,11 +4,17 @@
  * Returns - Nothing
  * Result - Render all the shows on the screen
  */
-function allShowsEventListener(event) {
+function allShowsBtnEventHandler(event) {
   event.preventDefault();
   render(allShows, SHOW);
+  // Reset the values of both of the drop down menus.
   showDropdown.selectedIndex = 0;
   episodeDropdown.selectedIndex = 0;
+
+  /*
+   When showing all shows on the screen,
+   the drop down menu for episodes should be empty.
+   */
   allEpisodes = [];
   createEpisodeDropdown(allEpisodes);
 }
@@ -16,9 +22,10 @@ function allShowsEventListener(event) {
 /*****************************************************************************/
 
 /*
- * Role -
- * Parameter -
- * Returns -
+ * Role - The event handler for the show titles.
+ * If the show title is clicked, display all the episodes of corresponding show
+ * Parameter - None
+ * Returns - Nothing
  * Result -
  */
 function createShowTitleEventListener() {
@@ -66,7 +73,7 @@ function createShowBlock(show) {
     <img src="${imgSrc}">
     <div class="summary">
       <h3 class="summaryTitle">Summary:</h3>
-      <div class="summaryText">${show.summary}</div>
+      <div class="summaryText, showSummary">${show.summary}</div>
       <a class="showLink" href=${show.url} target="_blank">More...</a>
     </div>
     <div class="info">
@@ -153,7 +160,7 @@ async function showDropdownEventListener(showID) {
   /*
    First method -
   */
-  if (showID === "All shows") {
+  if (showID === "Select a show") {
     render(allShows, SHOW);
     allEpisodes = [];
   } else {
@@ -186,7 +193,7 @@ function createShowDropdown(showList) {
    and then add it to <select>
   */
   let firstOption = document.createElement("option");
-  firstOption.textContent = "All shows";
+  firstOption.textContent = "Select a show";
   showDropdown.add(firstOption);
 
   /*

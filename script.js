@@ -30,8 +30,8 @@ const showDropdown = document.getElementById("showDropDownList");
 /*
  * Role - To display the episode / show list.
  * Parameter - Takes 2 parameters
- *  the array of objects (episode or show) as a parameter.
- *  type of array - SHOW or EPISODE
+ *  list - the array of objects (episode or show) as a parameter.
+ *  type - type of array - SHOW or EPISODE
  * Result - Displays the episodes / shows on the page using DOM manipulation.
  */
 function render(list, type) {
@@ -94,7 +94,7 @@ function setup() {
   });
 
   // add the event listener to the all shows button
-  allShowsBtn.addEventListener("click", allShowsEventListener);
+  allShowsBtn.addEventListener("click", allShowsBtnEventHandler);
   // initialise allEpisodes to empty array, as no show is selected yet.
   allEpisodes = [];
   // render the page

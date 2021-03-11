@@ -43,7 +43,7 @@ function createEpisodeBlock(episode) {
     imgSrc = episode.image.medium;
   }
 
-  if (episode.summary === null) {
+  if (episode.summary === null || episode.summary === "") {
     episodeSummary = "Check again later for latest updates!";
   } else {
     episodeSummary = episode.summary;
@@ -167,7 +167,6 @@ function episodeDropdownEventListener(event) {
  *  display the chosen episode from the dropdown.
  */
 function createEpisodeDropdown(episodeList) {
-
   /*
    delete the previously created options before proceeding
   */
@@ -181,7 +180,7 @@ function createEpisodeDropdown(episodeList) {
    and then add it to <select>
   */
   let firstOption = document.createElement("option");
-  firstOption.textContent = "All episodes";
+  firstOption.textContent = "Select an episode";
   episodeDropdown.add(firstOption);
 
   /*
