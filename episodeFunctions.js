@@ -1,10 +1,8 @@
-/*
- * Role - To add leading zeroes to a number
- * Parameter - Takes 2 parameters
- *  num - the number to which leading zeroes are to be added
- *  places - the number of digits the final result should have
- * Returns - A string containing the num with added leading zeroes to it.
- * Result - zeroPad(5, 3) gives the result as "005"
+/**
+ * To add leading zeroes to a number
+ * @param {Number} num - the number to which leading zeroes are to be added
+ * @param {Number} places - the number of digits the final result should have
+ * @returns {String} A string containing the num with added leading zeroes to it
  */
 function zeroPad(num, places) {
   // calculate the number of zeroes that need to be prepended to num
@@ -15,13 +13,14 @@ function zeroPad(num, places) {
 
 /*****************************************************************************/
 
-/*
- * Role - To create an HTML block for a single episode
- * Parameter - A single single episode passed as an object
- * Returns - An HTML div element that contains the episode data,
+/**
+ * To create an HTML block for a single episode.
+ * Creates an HTML block with all the needed episode data.
+ * This block can then be appended to the DOM to display the episode.
+ * @param {{image: Object, summary: String, name: String,
+ *  number: Number, season: Number}} episode - A single single episode passed as an object
+ * @returns An HTML div element that contains the episode data,
  *  enclosed in HTML tags.
- * Result - Creates an HTML block with all the needed episode data.
- *  This block can then be appended to the DOM to display the episode.
  */
 function createEpisodeBlock(episode) {
   // create the div element that will contain all the episode info
@@ -66,14 +65,12 @@ function createEpisodeBlock(episode) {
 
 /*****************************************************************************/
 
-/*
- * Role - Filter the episodes based on the characters typed in the search bar
-    and render the page for the filtered episodes
- * Parameter - None
- * Returns - Nothing
- * Result - The characters typed in the search bar are matched with the
- *  episode title and episode summary. All the episodes with a positive match
- *  are displayed on the webpage.
+/**
+ * Filter the episodes based on the characters typed in the search bar
+ * and render the page for the filtered episodes.
+ * The characters typed in the search bar are matched with the
+ * episode title and episode summary. All the episodes with a positive match
+ * are displayed on the webpage.
  */
 function searchEpisodes() {
   let numOfEpisodes = document.getElementById("numOfEpisodes");
@@ -115,11 +112,10 @@ function searchEpisodes() {
 
 /*****************************************************************************/
 
-/*
- * Role - Event listener for the episode dropdown
- * Parameter - event
- * Returns - Nothing
- * Result - Render the selected episode on the screen i.e. on the DOM
+/**
+ * Event listener for the episode dropdown.
+ * Renders the selected episode on the screen i.e. on the DOM
+ * @param {Object} event
  */
 function episodeDropdownEventListener(event) {
   /*
@@ -131,6 +127,7 @@ function episodeDropdownEventListener(event) {
    First method -
   */
 
+  console.log(event.target.value);
   if (event.target.value === "All episodes") {
     render(allEpisodes, EPISODE);
   } else {
@@ -159,14 +156,19 @@ function episodeDropdownEventListener(event) {
 
 /*****************************************************************************/
 
-/*
- * Role - To create the dropdown menu of episodes.
- * Parameter - An array of episodes (which are objects) as a parameter.
- * Returns - Nothing
- * Result - Create the dropdown menu and add the eventListener to
- *  display the chosen episode from the dropdown.
+/**
+ * Creates the dropdown menu of episodes and adds the eventListener to
+ * display the chosen episode from the dropdown.
+ * @param {Array} episodeList
  */
 function createEpisodeDropdown(episodeList) {
+  console.log("creating episode dropdown");
+  console.log(!episodeList.length);
+  if (!episodeList.length) {
+    episodeDropdown.style.display = "none";
+  } else {
+    episodeDropdown.style.display = "inline-block";
+  }
   /*
    delete the previously created options before proceeding
   */
@@ -180,7 +182,7 @@ function createEpisodeDropdown(episodeList) {
    and then add it to <select>
   */
   let firstOption = document.createElement("option");
-  firstOption.textContent = "Select an episode";
+  firstOption.textContent = "All episodes";
   episodeDropdown.add(firstOption);
 
   /*
@@ -208,10 +210,10 @@ function createEpisodeDropdown(episodeList) {
 
 /*****************************************************************************/
 
-/*
- * Role - To fetch episodes using the Fetch API
- * Parameter - None
- * Returns - An array of episodes (i.e. an array objects).
+/**
+ * To fetch episodes using the Fetch API
+ * @param{Number} showID
+ * @return{Array} An array of episodes (i.e. an array objects)
  */
 async function fetchAllEpisodes(showID) {
   let promise = await fetch(`https://api.tvmaze.com/shows/${showID}/episodes`);

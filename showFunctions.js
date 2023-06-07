@@ -1,8 +1,6 @@
-/*
- * Role - Event listener for "All Shows" button
- * Parameter - event
- * Returns - Nothing
- * Result - Render all the shows on the screen
+/**
+ * Event listener for "All Shows" button. Renders all the shows on the screen
+ * @param {Object} event
  */
 function allShowsBtnEventHandler(event) {
   event.preventDefault();
@@ -21,12 +19,9 @@ function allShowsBtnEventHandler(event) {
 
 /*****************************************************************************/
 
-/*
- * Role - The event handler for the show titles.
- * If the show title is clicked, display all the episodes of corresponding show
- * Parameter - None
- * Returns - Nothing
- * Result -
+/**
+ * The event handler for the show titles.
+ * If a show title is clicked, displays all the episodes of corresponding show
  */
 function createShowTitleEventListener() {
   let showTitles = document.querySelectorAll(".showTitle");
@@ -40,13 +35,12 @@ function createShowTitleEventListener() {
 
 /*****************************************************************************/
 
-/*
- * Role - To create an HTML block for a single show
- * Parameter - A single show passed as a parameter
- * Returns - An HTML div element that contains the show data,
+/**
+ * Creates an HTML block with all the needed show data.
+ * This block can then be appended to the DOM to display the show.
+ * @param {{name: String, image: Object, summary: String, url: String, rating: Object, genre: [String], status: String, runtime: Number}} show - A single show passed as a parameter
+ * @returns An HTML div element that contains the show data,
  *  enclosed in HTML tags.
- * Result - Creates an HTML block with all the needed show data.
- *  This block can then be appended to the DOM to display the show.
  */
 function createShowBlock(show) {
   // create the div element that will contain all the episode info
@@ -91,14 +85,12 @@ function createShowBlock(show) {
 
 /*****************************************************************************/
 
-/*
- * Role - Filter the episodes based on the characters typed in the search bar
-    and render the page for the filtered episodes
- * Parameter - None
- * Returns - Nothing
- * Result - The characters typed in the search bar are matched with the
- *  episode title and episode summary. All the episodes with a positive match
- *  are displayed on the webpage.
+/**
+ * Filter the episodes based on the characters typed in the search bar
+ * and render the page for the filtered episodes.
+ * The characters typed in the search bar are matched with the
+ * episode title and episode summary. All the episodes with a positive match
+ * are displayed on the webpage.
  */
 function searchShows() {
   let numOfEpisodes = document.getElementById("numOfEpisodes");
@@ -149,12 +141,10 @@ function searchShows() {
 
 /*****************************************************************************/
 
-/*
- * Role - Event listener for the show dropdown
- * Parameter - event
- * Returns - Nothing
- * Result - Render all the episodes of the selected show
+/**
+ * Renders all the episodes of the selected show
  * on the screen i.e. on the DOM
+ * @param {Number} showID
  */
 async function showDropdownEventListener(showID) {
   /*
@@ -172,12 +162,10 @@ async function showDropdownEventListener(showID) {
 }
 
 /*****************************************************************************/
-
-/*
- * Role -
- * Parameter -
- * Returns -
- * Result -
+/**
+ * Creates the dropdown menu of shows and adds the eventListener to
+ * display the chosen show from the dropdown.
+ * @param {Array} showList
  */
 function createShowDropdown(showList) {
   /*
